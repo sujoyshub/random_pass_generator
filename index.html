@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Generator</title>
+
+    <style>
+        /* CSS to style the buttons */
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+        
+        /* CSS to make the textareas non-scrollable and increase font size */
+        input[type="text"],
+        textarea {
+            resize: none;
+            overflow: hidden;
+            font-size: 18px; /* Adjust font size as needed */
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Random Password Generator (Sujoyshub)</h1>
+    <form method="post">
+        <input type="text" name="password" id="password" value="{{ password }}" readonly>
+        <br><br>
+        <button type="submit" name="action" value="regenerate">Regenerate</button>
+        <button type="submit" name="action" value="clear">Clear</button>
+        <br><br>
+        <textarea rows="20" cols="30" readonly>
+            {% for password in password_history %}
+                {{ password }}{% if not loop.last %},{% endif %}
+            {% endfor %}
+        </textarea>
+    </form>
+<a href="/download">Download last password</a>    
+</body>
+</html>
+
